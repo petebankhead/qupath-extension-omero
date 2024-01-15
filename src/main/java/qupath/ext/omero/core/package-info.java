@@ -27,6 +27,10 @@
  *         required or returned by some requests.
  *     </li>
  *     <li>
+ *         The {@link qupath.ext.omero.core.imageserver ImageServers} package contains the
+ *         {@link qupath.lib.images.servers.ImageServer ImageServer} used when opening images coming from OMERO servers.
+ *     </li>
+ *     <li>
  *         The {@link qupath.ext.omero.core.pixelapis pixelapis} package contains different methods to read
  *         the pixel values of an image.
  *     </li>

@@ -26,7 +26,7 @@ import qupath.lib.gui.QuPathGUI;
 import qupath.lib.gui.commands.ProjectCommands;
 import qupath.lib.gui.tools.GuiTools;
 import qupath.lib.images.servers.ImageServerProvider;
-import qupath.ext.omero.imagesserver.OmeroImageServerBuilder;
+import qupath.ext.omero.core.imageserver.OmeroImageServerBuilder;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;

@@ -1,4 +1,4 @@
-import qupath.ext.omero.imagesserver.*
+import qupath.ext.omero.core.imageserver.*
 
 /**
  * This script opens an image through the command line.
@@ -7,7 +7,7 @@ import qupath.ext.omero.imagesserver.*
 /*
 The script must be launched with the following command:
 
-path/to/QuPath/bin/QuPath script \
+/path/to/QuPath/bin/QuPath script \
     --image=the_web_link_of_your_image \
     --server "[--username, your_username, --password, your_password, --pixelAPI, Web]" \
     path/to/this/script/open_image_from_command_line.groovy

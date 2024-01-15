@@ -1,4 +1,4 @@
-import qupath.ext.omero.imagesserver.*
+import qupath.ext.omero.core.imageserver.*
 
 /*
  * This script imports all annotation of an image stored on an OMERO server

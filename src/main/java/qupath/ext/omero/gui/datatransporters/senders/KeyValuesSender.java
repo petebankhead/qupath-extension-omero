@@ -6,7 +6,7 @@ import org.slf4j.LoggerFactory;
 import qupath.ext.omero.gui.UiUtilities;
 import qupath.ext.omero.gui.datatransporters.DataTransporter;
 import qupath.ext.omero.gui.datatransporters.forms.KeyValuesForm;
-import qupath.ext.omero.imagesserver.OmeroImageServer;
+import qupath.ext.omero.core.imageserver.OmeroImageServer;
 import qupath.fx.dialogs.Dialogs;
 import qupath.lib.gui.QuPathGUI;
 import qupath.lib.projects.ProjectImageEntry;

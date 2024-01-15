@@ -1,4 +1,4 @@
-package qupath.ext.omero.imagesserver;
+package qupath.ext.omero.core.imageserver;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import qupath.ext.omero.OmeroServer;
 import qupath.ext.omero.core.WebClient;
 import qupath.ext.omero.core.WebClients;
+import qupath.ext.omero.core.imageserver.OmeroImageServerBuilder;
 import qupath.lib.images.servers.ImageServer;
 
 import java.awt.image.BufferedImage;

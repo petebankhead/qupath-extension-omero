@@ -1,4 +1,4 @@
-package qupath.ext.omero.imagesserver;
+package qupath.ext.omero.core.imageserver;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

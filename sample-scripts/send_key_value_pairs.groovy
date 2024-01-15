@@ -1,4 +1,4 @@
-import qupath.ext.omero.imagesserver.*
+import qupath.ext.omero.core.imageserver.*
 
 /*
  * This script sends all key value pairs of a QuPath image to the

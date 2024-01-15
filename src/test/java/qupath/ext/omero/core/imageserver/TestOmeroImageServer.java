@@ -1,10 +1,12 @@
-package qupath.ext.omero.imagesserver;
+package qupath.ext.omero.core.imageserver;
 
 import org.junit.jupiter.api.*;
 import qupath.ext.omero.OmeroServer;
 import qupath.ext.omero.TestUtilities;
 import qupath.ext.omero.core.WebClient;
 import qupath.ext.omero.core.WebClients;
+import qupath.ext.omero.core.imageserver.OmeroImageServer;
+import qupath.ext.omero.core.imageserver.OmeroImageServerBuilder;
 import qupath.lib.images.servers.PixelType;
 import qupath.lib.images.servers.TileRequest;
 import qupath.lib.objects.PathObject;

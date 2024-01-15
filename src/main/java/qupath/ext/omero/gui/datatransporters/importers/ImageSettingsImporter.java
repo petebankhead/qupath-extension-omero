@@ -7,7 +7,7 @@ import qupath.ext.omero.core.entities.image.ChannelSettings;
 import qupath.ext.omero.gui.UiUtilities;
 import qupath.ext.omero.gui.datatransporters.DataTransporter;
 import qupath.ext.omero.gui.datatransporters.forms.ImageSettingsForm;
-import qupath.ext.omero.imagesserver.OmeroImageServer;
+import qupath.ext.omero.core.imageserver.OmeroImageServer;
 import qupath.fx.dialogs.Dialogs;
 import qupath.lib.display.ChannelDisplayInfo;
 import qupath.lib.display.ImageDisplay;

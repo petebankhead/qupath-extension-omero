@@ -30,7 +30,10 @@ public class TestWebUtilities {
     @Test
     void Check_OMERO_ID_On_Project() {
         long expectedID = 201;
-        URI uri = URI.create(String.format("https://omero-czi-cpw.mvm.ed.ac.uk/webclient/?show=project-%d", expectedID));
+        URI uri = URI.create(String.format(
+                "https://omero-czi-cpw.mvm.ed.ac.uk/webclient/?show=project-%d",
+                expectedID
+        ));
 
         int id = WebUtilities.parseEntityId(uri).orElse(-1);
 

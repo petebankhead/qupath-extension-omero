@@ -7,7 +7,7 @@ import qupath.ext.omero.core.entities.repositoryentities.serverentities.image.Im
 import qupath.ext.omero.gui.UiUtilities;
 import qupath.ext.omero.gui.datatransporters.DataTransporter;
 import qupath.ext.omero.gui.datatransporters.forms.SendAnnotationForm;
-import qupath.ext.omero.imagesserver.OmeroImageServer;
+import qupath.ext.omero.core.imageserver.OmeroImageServer;
 import qupath.lib.gui.QuPathGUI;
 import qupath.lib.gui.tools.MeasurementExporter;
 import qupath.lib.gui.viewer.QuPathViewer;

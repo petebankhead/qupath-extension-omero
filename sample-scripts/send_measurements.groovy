@@ -1,4 +1,4 @@
-import qupath.ext.omero.imagesserver.*
+import qupath.ext.omero.core.imageserver.*
 import qupath.lib.gui.tools.*
 import qupath.ext.omero.core.entities.repositoryentities.serverentities.image.*
 import qupath.lib.objects.*
