@@ -79,7 +79,7 @@ public class BrowseMenu extends Menu {
                 getItems().add(clientMenuItem);
             }
 
-            if (getItems().size() > 0) {
+            if (!getItems().isEmpty()) {
                 getItems().add(new SeparatorMenuItem());
             }
 

@@ -237,7 +237,7 @@ public class UiUtilities {
     }
 
     /**
-     * Show a window that is hidden. the focus is also set to it.
+     * Show a window that is hidden. The focus is also set to it.
      *
      * @param window  the window to show
      */
@@ -246,7 +246,7 @@ public class UiUtilities {
         window.requestFocus();
 
         // This is necessary to avoid a bug on Linux
-        // that reset the window size
+        // that resets the window size
         window.setWidth(window.getWidth() + 1);
         window.setHeight(window.getHeight() + 1);
     }
