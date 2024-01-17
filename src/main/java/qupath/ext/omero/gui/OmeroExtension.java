@@ -23,7 +23,6 @@ package qupath.ext.omero.gui;
 
 import javafx.scene.control.SeparatorMenuItem;
 
-import qupath.ext.omero.gui.UiUtilities;
 import qupath.ext.omero.gui.browser.BrowseMenu;
 import qupath.ext.omero.gui.datatransporters.DataTransporterMenu;
 import qupath.ext.omero.gui.datatransporters.importers.AnnotationImporter;
