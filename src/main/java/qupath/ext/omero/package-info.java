@@ -5,7 +5,7 @@
  *         The {@link qupath.ext.omero.gui GUI} package contains user interface elements of the extension.
  *     </li>
  *     <li>
- *         The {@link qupath.ext.omero.core core} package contains web requests to communicate with an OMERO server.
+ *         The {@link qupath.ext.omero.core core} package contains the main features of the extension.
  *     </li>
  * </ul>
  */
