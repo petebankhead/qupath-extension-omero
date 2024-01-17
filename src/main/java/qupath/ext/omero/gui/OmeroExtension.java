@@ -19,7 +19,7 @@
  * #L%
  */
 
-package qupath.ext.omero;
+package qupath.ext.omero.gui;
 
 import javafx.scene.control.SeparatorMenuItem;
 
@@ -44,8 +44,8 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 /**
- * <p>Install the OMERO extension.</p>
- * It adds menus and actions to the Extensions menu:
+ * <p>Install the OMERO extension to a QuPath GUI.</p>
+ * <p>It adds menus and actions to the Extensions menu:</p>
  * <ul>
  *     <li>A browse menu, described in {@link qupath.ext.omero.gui.browser browser}.</li>
  *     <li>A connection manager action, described in {@link qupath.ext.omero.gui.connectionsmanager connection manager}.</li>

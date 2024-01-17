@@ -2,6 +2,12 @@
  * This package contains all UI elements of the extension.
  * <ul>
  *     <li>
+ *         The {@link qupath.ext.omero.gui.OmeroExtension OmeroExtension} class installs the extension.
+ *     </li>
+ *     <li>
+ *         The {@link qupath.ext.omero.gui.UiUtilities UiUtilities} class contains utility functions related to the UI.
+ *     </li>
+ *     <li>
  *         The {@link qupath.ext.omero.gui.browser Browser} package contains windows
  *         to browse an OMERO server.
  *     </li>

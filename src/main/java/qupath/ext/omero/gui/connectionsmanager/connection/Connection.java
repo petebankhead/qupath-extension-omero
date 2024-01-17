@@ -11,7 +11,7 @@ import javafx.scene.control.TitledPane;
 import javafx.scene.layout.VBox;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import qupath.ext.omero.OmeroExtension;
+import qupath.ext.omero.gui.OmeroExtension;
 import qupath.ext.omero.core.ClientsPreferencesManager;
 import qupath.ext.omero.core.WebClient;
 import qupath.ext.omero.core.WebClients;
