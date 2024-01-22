@@ -82,7 +82,7 @@ public class ConnectionsManager extends Stage {
             }
         }
 
-        if (container.getChildren().size() == 0) {
+        if (container.getChildren().isEmpty()) {
             container.getChildren().add(new Label(resources.getString("ConnectionsManager.ConnectionManager.noClients")));
         }
     }
