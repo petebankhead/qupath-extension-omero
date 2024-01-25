@@ -387,6 +387,7 @@ public class Browser extends Stage {
         });
 
         loadingObjects.visibleProperty().bind(Bindings.notEqual(browserModel.getNumberOfEntitiesLoading(), 0));
+        loadingObjects.managedProperty().bind(loadingObjects.visibleProperty());
 
         loadingOrphaned.textProperty().bind(Bindings.concat(
                 resources.getString("Browser.ServerBrowser.loadingOrphanedImages"),
@@ -397,8 +398,10 @@ public class Browser extends Stage {
                 ")"
         ));
         loadingOrphaned.visibleProperty().bind(browserModel.areOrphanedImagesLoading());
+        loadingOrphaned.managedProperty().bind(loadingOrphaned.visibleProperty());
 
         loadingThumbnail.visibleProperty().bind(Bindings.notEqual(browserModel.getNumberOfThumbnailsLoading(), 0));
+        loadingThumbnail.managedProperty().bind(loadingThumbnail.visibleProperty());
 
         groupOwner.textProperty().bind(Bindings.createStringBinding(
                 () -> String.format("%s     %s", browserModel.getSelectedGroup().get().getName(), browserModel.getSelectedOwner().get().getFullName()),
