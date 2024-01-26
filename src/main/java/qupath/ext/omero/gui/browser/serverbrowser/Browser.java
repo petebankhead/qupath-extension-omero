@@ -137,7 +137,7 @@ public class Browser extends Stage {
                 logger.error("Error while creating the settings window", e);
             }
         } else {
-            UiUtilities.showHiddenWindow(settings);
+            UiUtilities.showWindow(settings);
         }
     }
 
@@ -230,7 +230,7 @@ public class Browser extends Stage {
                 logger.error("Error while creating the settings window", e);
             }
         } else {
-            UiUtilities.showHiddenWindow(advancedSearch);
+            UiUtilities.showWindow(advancedSearch);
         }
     }
 

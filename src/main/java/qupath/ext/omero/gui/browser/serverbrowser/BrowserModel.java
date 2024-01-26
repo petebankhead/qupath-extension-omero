@@ -4,6 +4,7 @@ import javafx.application.Platform;
 import javafx.beans.property.*;
 import javafx.collections.*;
 import qupath.ext.omero.core.WebClient;
+import qupath.ext.omero.core.WebClients;
 import qupath.ext.omero.core.apis.ApisHandler;
 import qupath.ext.omero.core.pixelapis.PixelAPI;
 import qupath.ext.omero.gui.UiUtilities;
@@ -41,6 +42,12 @@ public class BrowserModel {
     private final ObservableSet<URI> openedImagesURIsImmutable = FXCollections.unmodifiableObservableSet(openedImagesURIs);
     private final ObjectProperty<Owner> selectedOwner;
     private final ObjectProperty<Group> selectedGroup;
+    private static final ObservableList<WebClient> clients = FXCollections.observableArrayList();
+    private static final ObservableList<WebClient> clientsImmutable = FXCollections.unmodifiableObservableList(clients);
+
+    static {
+        UiUtilities.bindListInUIThread(clients, WebClients.getClients());
+    }
 
     /**
      * Creates a new browser model
@@ -163,5 +170,12 @@ public class BrowserModel {
      */
     public ObjectProperty<Group> getSelectedGroup() {
         return selectedGroup;
+    }
+
+    /**
+     * See {@link WebClients#getClients()}.
+     */
+    public static ObservableList<WebClient> getClients() {
+        return clientsImmutable;
     }
 }

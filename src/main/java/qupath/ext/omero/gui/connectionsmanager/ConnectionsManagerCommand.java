@@ -36,7 +36,7 @@ public class ConnectionsManagerCommand implements Runnable {
 				logger.error("Error while creating the connection manager window", e);
 			}
 		} else {
-			UiUtilities.showHiddenWindow(connectionsManager);
+			UiUtilities.showWindow(connectionsManager);
 		}
 	}
 
