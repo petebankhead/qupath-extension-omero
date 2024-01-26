@@ -99,7 +99,9 @@ public class Connection extends VBox {
 
     @FXML
     private void onBrowseClicked(ActionEvent ignoredEvent) {
-        OmeroExtension.getBrowseMenu().openBrowserOfClient(client);
+        if (client != null) {
+            OmeroExtension.getBrowseMenu().openBrowserOfClient(client.getApisHandler().getWebServerURI());
+        }
     }
 
     @FXML

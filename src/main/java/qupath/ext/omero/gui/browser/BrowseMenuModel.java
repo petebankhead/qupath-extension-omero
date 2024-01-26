@@ -2,9 +2,10 @@ package qupath.ext.omero.gui.browser;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import qupath.ext.omero.core.WebClient;
-import qupath.ext.omero.core.WebClients;
+import qupath.ext.omero.core.ClientsPreferencesManager;
 import qupath.ext.omero.gui.UiUtilities;
+
+import java.net.URI;
 
 /**
  * <p>
@@ -13,20 +14,19 @@ import qupath.ext.omero.gui.UiUtilities;
  * </p>
  * <p>
  *     In effect, this class acts as an intermediate between a browser menu and
- *     {@link WebClients WebClients}.
- *     Lists of a WebClients can be updated from any thread but the browse menu can
- *     only be accessed from the UI thread, so this class propagates changes made to these elements
- *     from any thread to the UI thread.
+ *     {@link ClientsPreferencesManager}.
+ *     URIs can be updated from any thread but the browse menu can only be accessed from the UI thread,
+ *     so this class propagates changes made to these elements from any thread to the UI thread.
  * </p>
  * <p>This class is not instantiable as it only contains a static method.</p>
  */
 class BrowseMenuModel {
 
-    private static final ObservableList<WebClient> clients = FXCollections.observableArrayList();
-    private static final ObservableList<WebClient> clientsImmutable = FXCollections.unmodifiableObservableList(clients);
+    private static final ObservableList<URI> uris = FXCollections.observableArrayList();
+    private static final ObservableList<URI> urisImmutable = FXCollections.unmodifiableObservableList(uris);
 
     static {
-        UiUtilities.bindListInUIThread(clients, WebClients.getClients());
+        UiUtilities.bindListInUIThread(uris, ClientsPreferencesManager.getURIs());
     }
 
     private BrowseMenuModel() {
@@ -34,9 +34,9 @@ class BrowseMenuModel {
     }
 
     /**
-     * See {@link WebClients#getClients()}.
+     * See {@link ClientsPreferencesManager#getURIs()}.
      */
-    public static ObservableList<WebClient> getClients() {
-        return clientsImmutable;
+    public static ObservableList<URI> getURIs() {
+        return urisImmutable;
     }
 }

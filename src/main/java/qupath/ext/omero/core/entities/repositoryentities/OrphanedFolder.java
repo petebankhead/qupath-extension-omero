@@ -6,13 +6,10 @@ import javafx.collections.ObservableList;
 import qupath.ext.omero.core.apis.ApisHandler;
 import qupath.ext.omero.core.entities.repositoryentities.serverentities.image.Image;
 import qupath.ext.omero.gui.UiUtilities;
-import qupath.ext.omero.core.entities.permissions.Group;
-import qupath.ext.omero.core.entities.permissions.Owner;
 
 import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.concurrent.CompletableFuture;
-import java.util.function.Predicate;
 
 /**
  * An orphaned folder is a container for orphaned images (which are described in
@@ -85,11 +82,6 @@ public class OrphanedFolder implements RepositoryEntity {
                 resources.getString("Web.Entities.RepositoryEntities.OrphanedFolder.orphanedImages") +
                         " (" + numberOfImages + ")"
         );
-    }
-
-    @Override
-    public boolean isFilteredByGroupOwnerName(Group groupFilter, Owner ownerFilter, Predicate<RepositoryEntity> labelPredicate) {
-        return true;
     }
 
     @Override

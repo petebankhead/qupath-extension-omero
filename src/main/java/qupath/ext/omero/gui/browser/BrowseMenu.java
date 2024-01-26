@@ -15,6 +15,7 @@ import qupath.ext.omero.core.WebClients;
 import qupath.ext.omero.gui.UiUtilities;
 
 import java.io.IOException;
+import java.net.URI;
 import java.text.MessageFormat;
 import java.util.HashMap;
 import java.util.Map;
@@ -35,7 +36,7 @@ public class BrowseMenu extends Menu {
 
     private static final Logger logger = LoggerFactory.getLogger(BrowseMenu.class);
     private static final ResourceBundle resources = UiUtilities.getResources();
-    private final Map<WebClient, BrowserCommand> browserCommands = new HashMap<>();
+    private final Map<URI, BrowserCommand> browserCommands = new HashMap<>();
     private MenuItem newServerItem;
 
     /**
@@ -46,45 +47,50 @@ public class BrowseMenu extends Menu {
         setUpListeners();
     }
 
-    public void openBrowserOfClient(WebClient client) {
-        if (browserCommands.containsKey(client)) {
-            browserCommands.get(client).run();
+    public void openBrowserOfClient(URI uri) {
+        if (browserCommands.containsKey(uri)) {
+            browserCommands.get(uri).run();
         }
     }
 
     private void initUI() {
         setText(resources.getString("Browser.BrowseMenu.browseServer"));
+        createURIItems();
         createNewServerItem();
     }
 
     private void setUpListeners() {
-        BrowseMenuModel.getClients().addListener((ListChangeListener<? super WebClient>) change -> {
+        BrowseMenuModel.getURIs().addListener((ListChangeListener<? super URI>) change -> {
             while (change.next()) {
                 if (change.wasRemoved()) {
-                    for (WebClient client: change.getRemoved()) {
-                        if (browserCommands.containsKey(client)) {
-                            browserCommands.get(client).close();
-                            browserCommands.remove(client);
+                    for (URI uri: change.getRemoved()) {
+                        if (browserCommands.containsKey(uri)) {
+                            browserCommands.get(uri).close();
+                            browserCommands.remove(uri);
                         }
                     }
                 }
             }
 
-            getItems().clear();
-            for (WebClient client: change.getList()) {
-                BrowserCommand browserCommand = getBrowserCommand(client);
-
-                MenuItem clientMenuItem = new MenuItem(client.getApisHandler().getWebServerURI() + "...");
-                clientMenuItem.setOnAction(e -> browserCommand.run());
-                getItems().add(clientMenuItem);
-            }
-
-            if (!getItems().isEmpty()) {
-                getItems().add(new SeparatorMenuItem());
-            }
-
+            createURIItems();
             getItems().add(newServerItem);
         });
+    }
+
+    private void createURIItems() {
+        getItems().clear();
+
+        for (URI uri: BrowseMenuModel.getURIs()) {
+            BrowserCommand browserCommand = getBrowserCommand(uri);
+
+            MenuItem clientMenuItem = new MenuItem(uri.toString());
+            clientMenuItem.setOnAction(e -> browserCommand.run());
+            getItems().add(clientMenuItem);
+        }
+
+        if (!getItems().isEmpty()) {
+            getItems().add(new SeparatorMenuItem());
+        }
     }
 
     private void createNewServerItem() {
@@ -97,9 +103,10 @@ public class BrowseMenu extends Menu {
 
                 if (dialogConfirmed) {
                     String url = newServerForm.getURL();
+
                     WebClients.createClient(url, newServerForm.canSkipAuthentication()).thenAccept(client -> Platform.runLater(() -> {
                         if (client.getStatus().equals(WebClient.Status.SUCCESS)) {
-                            BrowserCommand browser = getBrowserCommand(client);
+                            BrowserCommand browser = getBrowserCommand(client.getApisHandler().getWebServerURI());
                             browser.run();
                         } else if (client.getStatus().equals(WebClient.Status.FAILED)) {
                             Optional<WebClient.FailReason> failReason = client.getFailReason();
@@ -131,11 +138,11 @@ public class BrowseMenu extends Menu {
         getItems().add(newServerItem);
     }
 
-    private BrowserCommand getBrowserCommand(WebClient client) {
-        if (!browserCommands.containsKey(client)) {
-            browserCommands.put(client, new BrowserCommand(client));
+    private BrowserCommand getBrowserCommand(URI uri) {
+        if (!browserCommands.containsKey(uri)) {
+            browserCommands.put(uri, new BrowserCommand(uri));
         }
 
-        return browserCommands.get(client);
+        return browserCommands.get(uri);
     }
 }

@@ -474,6 +474,7 @@ public class WebClient implements AutoCloseable {
                 public void run() {
                     apisHandler.ping().thenAccept(success -> {
                         if (!success) {
+                            logger.warn("Ping failed. Removing client");
                             WebClients.removeClient(WebClient.this);
                         }
                     });

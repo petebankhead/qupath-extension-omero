@@ -137,7 +137,7 @@ public class Browser extends Stage {
                 logger.error("Error while creating the settings window", e);
             }
         } else {
-            UiUtilities.showHiddenWindow(settings);
+            UiUtilities.showWindow(settings);
         }
     }
 
@@ -195,7 +195,7 @@ public class Browser extends Stage {
                 .filter(Objects::nonNull)
                 .toList();
 
-        if (URIs.size() > 0) {
+        if (!URIs.isEmpty()) {
             ClipboardContent content = new ClipboardContent();
             if (URIs.size() == 1) {
                 content.putString(URIs.get(0));
@@ -230,7 +230,7 @@ public class Browser extends Stage {
                 logger.error("Error while creating the settings window", e);
             }
         } else {
-            UiUtilities.showHiddenWindow(advancedSearch);
+            UiUtilities.showWindow(advancedSearch);
         }
     }
 
@@ -310,6 +310,9 @@ public class Browser extends Stage {
         PredicateTextField<RepositoryEntity> predicateTextField = new PredicateTextField<>(entity ->
                 entity.getLabel().get()
         );
+        predicateTextField.setPromptText(resources.getString("Browser.ServerBrowser.filterNames"));
+        predicateTextField.setIgnoreCase(true);
+        HBox.setHgrow(predicateTextField, Priority.ALWAYS);
 
         hierarchy.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         hierarchy.setRoot(new HierarchyItem(
@@ -320,9 +323,6 @@ public class Browser extends Stage {
         ));
         hierarchy.setCellFactory(n -> new HierarchyCellFactory(client));
 
-        predicateTextField.setPromptText(resources.getString("Browser.ServerBrowser.filterNames"));
-        predicateTextField.setIgnoreCase(true);
-        HBox.setHgrow(predicateTextField, Priority.ALWAYS);
         filterContainer.getChildren().add(0, predicateTextField);
 
         attributeColumn.setCellValueFactory(cellData -> {
@@ -387,6 +387,7 @@ public class Browser extends Stage {
         });
 
         loadingObjects.visibleProperty().bind(Bindings.notEqual(browserModel.getNumberOfEntitiesLoading(), 0));
+        loadingObjects.managedProperty().bind(loadingObjects.visibleProperty());
 
         loadingOrphaned.textProperty().bind(Bindings.concat(
                 resources.getString("Browser.ServerBrowser.loadingOrphanedImages"),
@@ -397,8 +398,10 @@ public class Browser extends Stage {
                 ")"
         ));
         loadingOrphaned.visibleProperty().bind(browserModel.areOrphanedImagesLoading());
+        loadingOrphaned.managedProperty().bind(loadingOrphaned.visibleProperty());
 
         loadingThumbnail.visibleProperty().bind(Bindings.notEqual(browserModel.getNumberOfThumbnailsLoading(), 0));
+        loadingThumbnail.managedProperty().bind(loadingThumbnail.visibleProperty());
 
         groupOwner.textProperty().bind(Bindings.createStringBinding(
                 () -> String.format("%s     %s", browserModel.getSelectedGroup().get().getName(), browserModel.getSelectedOwner().get().getFullName()),

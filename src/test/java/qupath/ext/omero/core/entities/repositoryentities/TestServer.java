@@ -54,13 +54,6 @@ public class TestServer extends OmeroServer {
         }
 
         @Test
-        void Check_Is_Filtered() {
-            boolean isFiltered = server.isFilteredByGroupOwnerName(null, null, null);
-
-            Assertions.assertTrue(isFiltered);
-        }
-
-        @Test
         abstract void Check_Default_Group();
 
         @Test

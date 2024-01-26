@@ -237,11 +237,11 @@ public class UiUtilities {
     }
 
     /**
-     * Show a window that is hidden. The focus is also set to it.
+     * Show a window. The focus is also set to it.
      *
      * @param window  the window to show
      */
-    public static void showHiddenWindow(Stage window) {
+    public static void showWindow(Stage window) {
         window.show();
         window.requestFocus();
 

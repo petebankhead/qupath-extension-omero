@@ -48,11 +48,4 @@ public class TestOrphanedFolder extends OmeroServer {
 
         TestUtilities.assertCollectionsEqualsWithoutOrder(expectedChildren, children);
     }
-
-    @Test
-    void Check_Is_Filtered() {
-        boolean isFiltered = orphanedFolder.isFilteredByGroupOwnerName(null, null, null);
-
-        Assertions.assertTrue(isFiltered);
-    }
 }
