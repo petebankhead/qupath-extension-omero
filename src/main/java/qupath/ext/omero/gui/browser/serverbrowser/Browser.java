@@ -195,7 +195,7 @@ public class Browser extends Stage {
                 .filter(Objects::nonNull)
                 .toList();
 
-        if (URIs.size() > 0) {
+        if (!URIs.isEmpty()) {
             ClipboardContent content = new ClipboardContent();
             if (URIs.size() == 1) {
                 content.putString(URIs.get(0));
@@ -310,6 +310,9 @@ public class Browser extends Stage {
         PredicateTextField<RepositoryEntity> predicateTextField = new PredicateTextField<>(entity ->
                 entity.getLabel().get()
         );
+        predicateTextField.setPromptText(resources.getString("Browser.ServerBrowser.filterNames"));
+        predicateTextField.setIgnoreCase(true);
+        HBox.setHgrow(predicateTextField, Priority.ALWAYS);
 
         hierarchy.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         hierarchy.setRoot(new HierarchyItem(
@@ -320,9 +323,6 @@ public class Browser extends Stage {
         ));
         hierarchy.setCellFactory(n -> new HierarchyCellFactory(client));
 
-        predicateTextField.setPromptText(resources.getString("Browser.ServerBrowser.filterNames"));
-        predicateTextField.setIgnoreCase(true);
-        HBox.setHgrow(predicateTextField, Priority.ALWAYS);
         filterContainer.getChildren().add(0, predicateTextField);
 
         attributeColumn.setCellValueFactory(cellData -> {

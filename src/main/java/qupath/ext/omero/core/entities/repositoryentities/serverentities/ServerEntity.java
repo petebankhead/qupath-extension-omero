@@ -13,7 +13,6 @@ import qupath.ext.omero.core.entities.repositoryentities.RepositoryEntity;
 import java.lang.reflect.Type;
 import java.util.List;
 import java.util.Optional;
-import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 /**
@@ -42,11 +41,17 @@ public abstract class ServerEntity implements RepositoryEntity {
         return Long.hashCode(id);
     }
 
-    @Override
-    public boolean isFilteredByGroupOwnerName(Group groupFilter, Owner ownerFilter, Predicate<RepositoryEntity> labelPredicate) {
+
+    /**
+     * Indicates if this entity belongs to the provided group and owner.
+     *
+     * @param groupFilter  the group the entity should belong to
+     * @param ownerFilter  the owner the entity should belong to
+     * @return whether this entity matches all the filters
+     */
+    public boolean isFilteredByGroupOwner(Group groupFilter, Owner ownerFilter) {
         return (groupFilter == null || groupFilter == Group.getAllGroupsGroup() || group.equals(groupFilter)) &&
-                (ownerFilter == null || ownerFilter == Owner.getAllMembersOwner() || owner.equals(ownerFilter)) &&
-                labelPredicate.test(this);
+                (ownerFilter == null || ownerFilter == Owner.getAllMembersOwner() || owner.equals(ownerFilter));
     }
 
     /**

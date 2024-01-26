@@ -12,6 +12,8 @@ import javafx.scene.control.TreeItem;
 import qupath.ext.omero.core.entities.permissions.Group;
 import qupath.ext.omero.core.entities.permissions.Owner;
 import qupath.ext.omero.core.entities.repositoryentities.RepositoryEntity;
+import qupath.ext.omero.core.entities.repositoryentities.serverentities.ServerEntity;
+import qupath.ext.omero.core.entities.repositoryentities.serverentities.image.Image;
 
 import java.util.function.Predicate;
 
@@ -37,8 +39,8 @@ public class HierarchyItem extends TreeItem<RepositoryEntity> {
      * @param repositoryEntity  the OMERO entity that will be displayed by this item
      * @param ownerBinding  the children of this item won't be shown if they are not owned by this owner
      * @param groupBinding  the children of this item won't be shown if they are not owned by this group
-     * @param labelPredicate  the children of this item won't be shown if they don't match this predicate
-     *                        (which is based on the label of this item)
+     * @param labelPredicate  the children of this item won't be shown if they are images and don't match
+     *                        this predicate (which is based on the label of this item)
      */
     public HierarchyItem(
             RepositoryEntity repositoryEntity,
@@ -59,9 +61,17 @@ public class HierarchyItem extends TreeItem<RepositoryEntity> {
                         children.setAll(change.getList().stream().map(object -> new HierarchyItem(object, ownerBinding, groupBinding, labelPredicate)).toList())
                 ));
 
-                filteredChildren.predicateProperty().bind(Bindings.createObjectBinding(() ->
-                                (Predicate<TreeItem<RepositoryEntity>>) item ->
-                                        item.getValue().isFilteredByGroupOwnerName(groupBinding.getValue(), ownerBinding.getValue(), labelPredicate.getValue()),
+                filteredChildren.predicateProperty().bind(Bindings.createObjectBinding(
+                        () -> (Predicate<TreeItem<RepositoryEntity>>) item -> {
+                            if (item.getValue() instanceof Image image) {
+                                return labelPredicate.getValue().test(image) &&
+                                        image.isFilteredByGroupOwner(groupBinding.getValue(), ownerBinding.getValue());
+                            } else if (item.getValue() instanceof ServerEntity serverEntity) {
+                                return serverEntity.isFilteredByGroupOwner(groupBinding.getValue(), ownerBinding.getValue());
+                            } else {
+                                return true;
+                            }
+                        },
                         groupBinding, ownerBinding, labelPredicate)
                 );
             }

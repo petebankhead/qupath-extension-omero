@@ -13,7 +13,6 @@ import qupath.ext.omero.core.entities.permissions.Owner;
 
 import java.util.*;
 import java.util.concurrent.CompletableFuture;
-import java.util.function.Predicate;
 
 /**
  * A server is the top element in the OMERO entity hierarchy.
@@ -55,11 +54,6 @@ public class Server implements RepositoryEntity {
     @Override
     public ReadOnlyStringProperty getLabel() {
         return new SimpleStringProperty(resources.getString("Web.Entities.RepositoryEntities.Server.server"));
-    }
-
-    @Override
-    public boolean isFilteredByGroupOwnerName(Group groupFilter, Owner ownerFilter, Predicate<RepositoryEntity> labelPredicate) {
-        return true;
     }
 
     @Override
