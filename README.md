@@ -1,3 +1,10 @@
+> # :warning: Important! 
+> * :new: **This is a completely new OMERO extension for QuPath v0.5+**!
+> * :construction: **It's still being developed - it's currently intended only for testing**
+> * :computer: **You can find the older, stable extension at https://github.com/qupath/qupath-extension-omero-web**
+> * :fireworks: **The biggest change is that _this extension will provide raw pixel access_**
+> * :bug: **Please report any bugs through the [issues page](https://github.com/Rylern/qupath-extension-omero/issues)**
+
 # QuPath OMERO extension
 
 Welcome to the OMERO extension for [QuPath](http://qupath.github.io)!
